@@ -1,12 +1,15 @@
 import { Route, Routes } from 'react-router-dom'
 import Login from './Login'
+import Register from './Register'
 import Error404 from './Error404'
+import '../style/style.css'
 
 function App() {
   return (
     <>
       <Routes>
         <Route exact path="/login" element={<Login />} />
+        <Route exact path="/register" element={<Register />} />
         <Route exact path="/*" element={<Error404 />} />
       </Routes>
     </>

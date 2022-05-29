@@ -1,0 +1,109 @@
+
+:root{
+  --text-color: rgb(40, 40, 40);
+  --input-size: 1.3rem;
+  --input-lable-size: 1.1rem;
+  --input-border: 1px solid #ced4da;
+  --input-border-foucs: 1px solid #989da39d;
+  --input-outline: 0px solid rgba(39, 122, 255, 0.351);
+}
+
+*{
+  font-family: ubuntu;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: var(--text-color);
+}
+
+.auth-title{
+  margin: 15px 30px;
+  font-weight: 400;
+  font-size: 3rem;
+}
+
+.auth-con{
+  margin-top: 50px;
+  min-width: 300px;
+  max-width: 400px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.auth-con h2{
+  font-size: 2.2rem;
+  font-weight: 200;
+}
+
+.input-group > *{
+  margin: 7px 0;
+  display: block;
+}
+
+.input-group label{
+  font-size: var(--input-lable-size);
+}
+
+.input-group input{
+  width: 100%;
+  font-size: var(--input-size);
+  padding: 5px 10px;
+  border: var(--input-border);
+  border-radius: 0.375rem;
+  outline: var(--input-outline);
+}
+
+.input-group input:focus{
+  transition: .1s;
+  outline-width: 3px;
+  border: var(--input-border-foucs);
+}
+
+.btn{
+  cursor: pointer;
+  font-size: var(--input-size);
+  padding: 5px 10px;
+  border: var(--input-border);
+  border-radius: 0.375rem;
+  outline: var(--input-outline);
+  color: #fff;
+  transition: .5s;
+}
+
+.btn:focus{
+  transition: .1s;
+  outline-width: 3px;
+  border: var(--input-border-foucs);
+}
+
+.btn-primary{
+  background: rgb(0, 89, 255);
+}
+
+.btn-primary:active{
+  background: rgb(0, 71, 204);
+}
+
+.my-15{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.link{
+  color: rgb(0, 89, 255);
+  text-decoration: none;
+}
+
+.link:hover{
+  color: rgb(0, 71, 204);
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 700px) {
+  .auth-con{
+    padding: 0px 30px !important; 
+    min-width: 100% !important;
+    max-width: 100% !important;
+  }
+}
