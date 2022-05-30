@@ -1,0 +1,3 @@
+[submodule "invoice-backend"]
+	path = invoice-backend
+	url = https://github.com/meparthka/invoice-backend.git
