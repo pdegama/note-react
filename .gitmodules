@@ -1,3 +1,3 @@
 [submodule "note-backend"]
 	path = note-backend
-	url = https://github.com/meparthka/note-backend
+	url = https://github.com/meparthka/invoice-backend
