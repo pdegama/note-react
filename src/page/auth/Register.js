@@ -4,7 +4,7 @@ function Rgister() {
   return (
     <>
       <h1 class="auth-title">
-        Note
+        Invoice
       </h1>
 
       <div class="auth-con">
