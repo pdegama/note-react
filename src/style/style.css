@@ -118,6 +118,10 @@
   border: 1px solid rgb(0, 114, 47, 0.2);
 }
 
+.hide{
+  display: none;
+}
+
 @media screen and (max-width: 700px) {
   .auth-con{
     padding: 0px 30px !important; 
