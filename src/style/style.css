@@ -24,8 +24,7 @@
 
 .auth-con{
   margin-top: 50px;
-  min-width: 300px;
-  max-width: 400px;
+  width: 350px;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -77,12 +76,24 @@
   border: var(--input-border-foucs);
 }
 
+.btn[disabled]{
+  cursor: auto;
+}
+
 .btn-primary{
   background: rgb(0, 89, 255);
 }
 
+.btn-primary[disabled]{
+  background: rgb(49, 121, 255);
+}
+
 .btn-primary:active{
   background: rgb(0, 71, 204);
+}
+
+.btn-primary:active[disabled]{
+  background: rgb(49, 121, 255);
 }
 
 .my-15{
@@ -104,6 +115,7 @@
   padding: 5px 10px;
   margin: 10px 0;
   border-radius: 3px;
+  width: 100%;
 }
 
 .alert-red{
