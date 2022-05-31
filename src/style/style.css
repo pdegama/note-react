@@ -100,6 +100,24 @@
   text-decoration: underline;
 }
 
+.alert{
+  padding: 5px 10px;
+  margin: 10px 0;
+  border-radius: 3px;
+}
+
+.alert-red{
+  background: rgba(218, 77, 89, 0.253);
+  color: rgb(255, 0, 21);
+  border: 1px solid rgba(255, 0, 21, 0.2);
+}
+
+.alert-green{
+  background: rgba(0, 221, 92, 0.185);
+  color: rgb(0, 114, 47);
+  border: 1px solid rgb(0, 114, 47, 0.2);
+}
+
 @media screen and (max-width: 700px) {
   .auth-con{
     padding: 0px 30px !important; 
