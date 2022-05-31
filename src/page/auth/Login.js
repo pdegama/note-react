@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
 import config from "../../config"
+import { GetField } from "../../tools/getform"
 
 function Login() {
 
@@ -12,6 +13,7 @@ function Login() {
         'Content-Type': 'application/json'
       }
     });
+    console.log(GetField(e));
     console.log(res.data);
   }
 
@@ -27,12 +29,12 @@ function Login() {
         </h2>
         <form onSubmit={onLogin} className="auth-form">
           <div className="input-group my-15">
-            <label for="username">Username:</label>
-            <input type="text" id="username" placeholder="Username" />
+            <label for="username" >Username:</label>
+            <input type="text" id="username" placeholder="Username" name="username" />
           </div>
           <div className="input-group my-15">
             <label for="password">Password:</label>
-            <input type="password" id="password" placeholder="Password" />
+            <input type="password" id="password" placeholder="Password" name="password" />
           </div>
           <div className="my-15">
             <button type="submit" className="btn btn-primary">

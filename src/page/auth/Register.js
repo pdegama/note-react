@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
 import config from "../../config"
+import { GetField } from "../../tools/getform"
 
 function Rgister() {
 
@@ -12,6 +13,7 @@ function Rgister() {
         'Content-Type': 'application/json'
       }
     });
+    GetField(e)
     console.log(res.data);
   }
 
@@ -28,15 +30,15 @@ function Rgister() {
         <form onSubmit={onRegister} className="auth-form">
           <div className="input-group my-15">
             <label for="fullname">Name:</label>
-            <input type="text" id="fullname" placeholder="Full Name" />
+            <input type="text" id="fullname" placeholder="Full Name" name="fullname" />
           </div>
           <div className="input-group my-15">
             <label for="username">Username:</label>
-            <input type="text" id="username" placeholder="Username" />
+            <input type="text" id="username" placeholder="Username" name="username" />
           </div>
           <div className="input-group my-15">
             <label for="password">Password:</label>
-            <input type="password" id="password" placeholder="Password" />
+            <input type="password" id="password" placeholder="Password" name="password" />
           </div>
           <div className="my-15">
             <button type="submit" className="btn btn-primary">
