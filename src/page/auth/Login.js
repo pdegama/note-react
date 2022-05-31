@@ -18,7 +18,7 @@ function Login() {
   return (
     <>
       <h1 className="auth-title">
-        Invoice
+        Note
       </h1>
 
       <div className="auth-con">
