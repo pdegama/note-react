@@ -71,6 +71,7 @@ function Register() {
       if (res.data.status) {
         formBtn.removeAttribute("disabled")
         formSuc.classList.remove("hide")
+        e.target.reset()
       } else if (res.data.exist) {
         formErr.innerHTML = "Username is already exist please change username";
         formBtn.removeAttribute("disabled")
@@ -92,7 +93,10 @@ function Register() {
           Register
         </h2>
         <div id="form_error" className="alert alert-red hide"></div>
-        <div id="form_succe" className="alert alert-green hide"></div>
+        <div id="form_succe" className="alert alert-green hide">
+          Register Secussful.<br />
+          Login To <Link to="/login">Click Hear</Link>.
+        </div>
         <form onSubmit={onRegister} className="auth-form">
           <div className="input-group my-15">
             <label for="fullname">Name:</label>
