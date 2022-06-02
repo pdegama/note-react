@@ -130,6 +130,16 @@
   border: 1px solid rgb(0, 114, 47, 0.2);
 }
 
+.alert-green a{
+  text-decoration: none;
+  color: rgb(0, 114, 47);
+  font-weight: bold;
+}
+
+.alert-green a:hover{
+  text-decoration: underline;  
+}
+
 .hide{
   display: none;
 }
