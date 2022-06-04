@@ -171,6 +171,15 @@ a {
   color: #fff;
 }
 
+.con {
+  margin: var(--con-mar-pad);
+  margin-top: 10px;
+}
+
+.sub-title{
+  font-size: 2rem;
+}
+
 @media screen and (max-width: 700px) {
   .auth-con {
     padding: 0px 30px !important;
@@ -187,4 +196,9 @@ a {
     font-weight: 300;
     font-size: 1.2rem;
   }
+  
+  .sub-title{
+    font-size: 1.7rem;
+  }
+
 }
