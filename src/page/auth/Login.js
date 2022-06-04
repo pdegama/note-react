@@ -52,7 +52,7 @@ function Login() {
       if (res.data.status) {
         formBtn.removeAttribute("disabled")
         setCookie("USER_TOKEN", res.data.token)
-        window.location = "/"
+        window.location = "/note"
         e.target.reset()
       } else if (!res.data.status) {
         formErr.innerHTML = "Username or Password is invalid.";

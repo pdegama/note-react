@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+import { useEffect } from "react"
 import { getCookie, deleteCookie } from "../../tools/cookie"
 import config from "../../config"
 import axios from 'axios'
