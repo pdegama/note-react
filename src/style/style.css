@@ -16,6 +16,10 @@
   color: var(--text-color);
 }
 
+a{
+  text-decoration: none;
+}
+
 .auth-title{
   margin: 15px 30px;
   font-weight: 400;
