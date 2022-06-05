@@ -1,34 +1,6 @@
-import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import { getCookie, deleteCookie } from "../tools/cookie"
-import config from "../config"
-import axios from 'axios'
 
-const Home = () => {
-
-  let [getStatus, setStatus] = useState(false);
-
-  const authTry = async () => {
-    const json = JSON.stringify({});
-    let t = getCookie("USER_TOKEN")
-    if (t) {
-      const res = await axios.post(config.backend + 'auth/', json, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Token': t
-        }
-      });
-      if (!res.data.status) {
-        deleteCookie("USER_TOKEN")
-      } else {
-        setStatus(true);
-      };
-    }
-  }
-
-  useEffect(() => {
-    authTry()
-  }, [])
+const Home = (e) => {
 
   return (
     <>
@@ -38,7 +10,7 @@ const Home = () => {
       </h1>
 
       {(() => {
-        if (!getStatus) {
+        if (!e.mod) {
           return (
             <>
               <br />
