@@ -14,9 +14,7 @@ const New = () => {
   useEffect(() => {
 
     setTimeout(() => {
-      const blocksFromHTML = htmlToDraft(`
-      
-    `)
+      const blocksFromHTML = htmlToDraft(``)
 
       const content = ContentState.createFromBlockArray(
         blocksFromHTML.contentBlocks,
