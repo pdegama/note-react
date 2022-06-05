@@ -176,7 +176,7 @@ a {
   margin-top: 10px;
 }
 
-.sub-title{
+.sub-title {
   font-size: 2rem;
   font-weight: 300;
   margin: 20px 0 18px 0;
@@ -186,11 +186,19 @@ a {
   padding: 5px;
   border: 1px solid #ccc;
 }
+
 .editor-class {
-  background-color:rgba(211, 211, 211, 0.479);
-  padding: 1rem;
+  background-color: rgba(211, 211, 211, 0.479);
+  padding: .5rem 1rem;
   border: 1px solid #ccc;
 }
+
+.editor-class * {
+  margin: 10px 0;
+  line-height: 130%;
+  font-weight: 300;
+}
+
 .editor-toolbar-class {
   border: 1px solid #ccc;
 }
@@ -211,8 +219,8 @@ a {
     font-weight: 300;
     font-size: 1.2rem;
   }
-  
-  .sub-title{
+
+  .sub-title {
     font-size: 1.7rem;
   }
 
