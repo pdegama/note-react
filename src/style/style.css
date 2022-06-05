@@ -178,6 +178,21 @@ a {
 
 .sub-title{
   font-size: 2rem;
+  font-weight: 300;
+  margin: 20px 0 18px 0;
+}
+
+.editor-wrapper-class {
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+.editor-class {
+  background-color:rgba(211, 211, 211, 0.479);
+  padding: 1rem;
+  border: 1px solid #ccc;
+}
+.editor-toolbar-class {
+  border: 1px solid #ccc;
 }
 
 @media screen and (max-width: 700px) {
