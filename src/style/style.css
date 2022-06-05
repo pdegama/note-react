@@ -185,6 +185,7 @@ a {
 .editor-wrapper-class {
   padding: 5px;
   border: 1px solid #ccc;
+  margin: 15px 0;
 }
 
 .editor-class {
@@ -196,7 +197,6 @@ a {
 .editor-class * {
   margin: 10px 0;
   line-height: 130%;
-  font-weight: 300;
 }
 
 .editor-toolbar-class {
