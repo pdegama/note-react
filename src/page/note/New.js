@@ -79,7 +79,7 @@ const New = () => {
       });
 
       if (res.data.status) {
-        
+        window.location = "/note/read/" + res.data.id
       } else if (!res.data.status) {
         formErr.innerHTML = "Server Error.";
         formBtn.removeAttribute("disabled")
