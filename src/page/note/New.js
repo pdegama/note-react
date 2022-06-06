@@ -38,7 +38,6 @@ const New = () => {
 
   const newNote = (e) => {
     e.preventDefault()
-
     let v = [];
     let error = ``
     let d = GetField(e)
@@ -113,6 +112,13 @@ const New = () => {
           <div className="input-group my-15">
             <label >Tags (separate with ,):</label>
             <input type="text" id="tags" placeholder="Tags" name="tags" />
+          </div>
+          <div className="input-group my-15">
+            <label >Visibility:</label>
+            <select name="visible" >
+              <option value="true">Private</option>
+              <option value="false">Public</option>
+            </select>
           </div>
           <button type='submit' id='form_submin_button' className='btn btn-primary'>
             Publish
