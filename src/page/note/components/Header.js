@@ -9,9 +9,9 @@ const Header = () => {
           Note
         </Link>
         <div>
-          <Link to="/setting">Settings</Link>
-          &nbsp;&nbsp;&nbsp;
-          <Link to="/logout">Logout</Link>
+          <Link to="/note/new"><i class="bi bi-plus-square"></i></Link>
+          <Link to="/setting"><i class="bi bi-gear"></i></Link>
+          <Link to="/logout"><i class="bi bi-box-arrow-right"></i></Link>
         </div>
       </div>
     </>
