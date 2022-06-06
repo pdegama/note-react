@@ -14,7 +14,7 @@ const Note = () => {
         <Route path="/" element={<NoteHome />} />
         <Route path="/read/:id" element={<Read />} />
         <Route path="/new" element={<New />} />
-        <Route path="/edit" element={<Edit />} />
+        <Route path="/edit/:id" element={<Edit />} />
       </Routes>
     </>
   )
