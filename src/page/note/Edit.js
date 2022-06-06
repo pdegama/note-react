@@ -8,27 +8,67 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import axios from 'axios';
 import { getCookie, deleteCookie } from "../../tools/cookie"
 import config from '../../config'
+import { useParams } from 'react-router-dom';
 
 const Edit = () => {
 
+  let { id } = useParams()
   const [editorState, setEditorState] = useState(
     () => EditorState.createEmpty(),
   );
 
-  /* useEffect(() => {
+  const getData = async () => {
+    let mainCon = document.getElementById("main_con")
+    let secCon = document.getElementById("sec_con")
+    let titleEle = document.getElementById("title")
+    let tagsEle = document.getElementById("tags")
+    let visibleEle = document.getElementById("visible")
 
-    setTimeout(() => {
-      const blocksFromHTML = htmlToDraft(``)
+    const json = JSON.stringify({});
+    let t = getCookie("USER_TOKEN")
+    const res = await axios.post(config.backend + `note/read/${id}`, json, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Token': t
+      }
+    });
 
-      const content = ContentState.createFromBlockArray(
-        blocksFromHTML.contentBlocks,
-        blocksFromHTML.entityMap
-      );
+    console.log(res.data);
 
-      setEditorState(() => EditorState.createWithContent(content))
+    if (res.data.status) {
+      if (res.data.edit) {
+        mainCon.classList.remove("hide")
+        const blocksFromHTML = htmlToDraft(res.data.html)
+        const content = ContentState.createFromBlockArray(
+          blocksFromHTML.contentBlocks,
+          blocksFromHTML.entityMap
+        );
+        setEditorState(() => EditorState.createWithContent(content))
+        titleEle.setAttribute("value", res.data.title)
+        let tags = ""
+        for (const k in res.data.tags) {
+          tags += ((k === "0" || k === 0) ? "" : ", ") + res.data.tags[k]
+        }
+        tagsEle.setAttribute("value", tags)
 
-    }, 3000)
-  }, []) */
+        console.log(visibleEle.childNodes);
+
+        if (!res.data.visible) {
+          visibleEle.childNodes[1].setAttribute("selected", "")
+        }
+
+      } else {
+        secCon.classList.remove("hide")
+      }
+    } else {
+      secCon.classList.remove("hide")
+    }
+
+  }
+
+  useEffect(() => {
+    getData()
+  }, [])
 
   const getHtml = () => {
     const rawContentState = convertToRaw(editorState.getCurrentContent());
@@ -50,8 +90,6 @@ const Edit = () => {
     let formBtn = document.getElementById("form_submin_button")
     formErr.classList.add("hide")
     formSuc.classList.add("hide")
-    formBtn.setAttribute("disabled", "")
-
     if (d.title.length >= 1) {
       v.push(1)
     } else {
@@ -70,7 +108,7 @@ const Edit = () => {
 
       const json = JSON.stringify(d);
       let t = getCookie("USER_TOKEN")
-      const res = await axios.post(config.backend + 'note/new', json, {
+      const res = await axios.post(config.backend + `note/edit/${id}`, json, {
         headers: {
           'Content-Type': 'application/json',
           'Token': t
@@ -91,7 +129,7 @@ const Edit = () => {
 
   return (
     <>
-      <div className='con'>
+      <div className='con hide' id="main_con">
         <h1 className='sub-title'>Edit</h1>
         <form onSubmit={newNote}>
           <div id="form_error" className="alert alert-red hide  "></div>
@@ -115,7 +153,7 @@ const Edit = () => {
           </div>
           <div className="input-group my-15">
             <label >Visibility:</label>
-            <select name="visible" >
+            <select name="visible" id="visible">
               <option value="true">Private</option>
               <option value="false">Public</option>
             </select>
@@ -124,6 +162,9 @@ const Edit = () => {
             Update
           </button>
         </form>
+      </div>
+      <div className='con hide' id="sec_con">
+        <h1 className='sub-title'>Page Not Found!</h1>
       </div>
     </>
   )
