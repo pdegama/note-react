@@ -3,6 +3,7 @@ import Header from './components/Header'
 import NoteHome from './Home'
 import New from './New'
 import Edit from './Edit'
+import Read from './Read'
 
 const Note = () => {
 
@@ -11,6 +12,7 @@ const Note = () => {
       <Header />
       <Routes>
         <Route path="/" element={<NoteHome />} />
+        <Route path="/read/:id" element={<Read />} />
         <Route path="/new" element={<New />} />
         <Route path="/edit" element={<Edit />} />
       </Routes>
