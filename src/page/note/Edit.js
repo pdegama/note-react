@@ -23,6 +23,7 @@ const Edit = () => {
     let titleEle = document.getElementById("title")
     let tagsEle = document.getElementById("tags")
     let visibleEle = document.getElementById("visible")
+    let loadCircle = document.getElementById("load_circle")
 
     const json = JSON.stringify({});
     let t = getCookie("USER_TOKEN")
@@ -32,8 +33,6 @@ const Edit = () => {
         'Token': t
       }
     });
-
-    console.log(res.data);
 
     if (res.data.status) {
       if (res.data.edit) {
@@ -64,6 +63,8 @@ const Edit = () => {
       secCon.classList.remove("hide")
     }
 
+    loadCircle.classList.add("hide")
+
   }
 
   useEffect(() => {
@@ -76,7 +77,7 @@ const Edit = () => {
     return markup
   }
 
-  const newNote = (e) => {
+  const updateNote = (e) => {
     e.preventDefault()
     let v = [];
     let error = ``
@@ -116,7 +117,7 @@ const Edit = () => {
       });
 
       if (res.data.status) {
-        window.location = "/note/read/" + res.data.id
+        window.location = "/note/read/" + id
       } else if (!res.data.status) {
         formErr.innerHTML = "Server Error.";
         formBtn.removeAttribute("disabled")
@@ -129,9 +130,12 @@ const Edit = () => {
 
   return (
     <>
+      <div className='load-circle' id='load_circle'>
+        <div></div>
+      </div>
       <div className='con hide' id="main_con">
         <h1 className='sub-title'>Edit</h1>
-        <form onSubmit={newNote}>
+        <form onSubmit={updateNote}>
           <div id="form_error" className="alert alert-red hide  "></div>
           <div id="form_succe" className="alert alert-green hide">
 
