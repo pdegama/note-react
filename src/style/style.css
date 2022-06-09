@@ -248,7 +248,13 @@ a i{
 
 .edit-icon{
   color: var(--text-color);
-  font-size: 1.5rem;
+  font-size: 1.7rem;
+  margin-right:5px !important;
+}
+
+.pdf-icon{
+  color: var(--text-color);
+  font-size: 1.8rem;
   margin-right:5px !important;
 }
 
@@ -256,6 +262,32 @@ a i{
   margin: auto 0;
 }
 
+.text-small{
+  text-align: right;
+  font-size: 1.2rem;
+}
+
+.text-small-x{
+  text-align: right;
+  font-size: .8rem;
+}
+
+.d-c-flex{
+  display: flex;
+  flex-direction: column;
+}
+
+.m-b{
+  margin-bottom: auto;
+}
+
+.m-t{
+  margin-top: auto;
+}
+
+.d34jk{
+  margin-right: 20px;
+}
 
 .load-circle{
   width: 100%;
@@ -323,16 +355,15 @@ a i{
   .navbar a i {
     font-size: 1.2rem;
   }
-
-  .edit-icon{
-    font-size: 1.3rem;
-    margin-right:5px !important;
-  }
   
   .sub-sub-title {
     font-size: 1.3rem;
     font-weight: 400;
     margin: 0px 0 0px 0;
+  }
+
+  .d34jk{
+    margin-right: 10px;
   }
 
 }
