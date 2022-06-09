@@ -47,7 +47,8 @@ const Read = () => {
                 <Link className='m-y-auto' to={"/note/edit/" + id}><i class="bi bi-pencil edit-icon"></i></Link>
               )
             }
-          })()}
+          })
+          }
         </div>
         <hr />
         <div className='html-body' dangerouslySetInnerHTML={{ __html: getState.html }}>

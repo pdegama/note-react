@@ -4,6 +4,7 @@ import NoteHome from './Home'
 import New from './New'
 import Edit from './Edit'
 import Read from './Read'
+import Settings from "./Settings";
 
 const Note = () => {
 
@@ -15,6 +16,7 @@ const Note = () => {
         <Route path="/read/:id" element={<Read />} />
         <Route path="/new" element={<New />} />
         <Route path="/edit/:id" element={<Edit />} />
+        <Route path="/setting" element={<Settings />} />
       </Routes>
     </>
   )
