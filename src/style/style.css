@@ -413,6 +413,38 @@ a i{
   color: var(--gary-color-2);
 }
 
+.new-post-link-x{
+  width: 49%;
+  margin: 10px 0;
+  border: var(--input-border);
+  border-radius: 0.375rem;
+  outline: var(--input-outline);
+  padding: 10px 20px;
+  transition: .3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.new-post-link-x:hover{
+  transform: translate(0);
+}
+
+.new-post-link-x *:nth-child(1){
+  text-align: center;
+  margin: auto;
+  color: var(--gary-color);
+  font-size: 1.7rem;
+  margin-bottom: 3px;
+}
+
+.new-post-link-x *:nth-child(2){
+  text-align: center;
+  margin: auto;
+  color: var(--gary-color);
+  font-size: 1.5rem;
+  margin-top: 3px;
+}
+
 @keyframes rotate {
   from {
     -webkit-transform: translate(-50%, -75%) rotate(0deg);

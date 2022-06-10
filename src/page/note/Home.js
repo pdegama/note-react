@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { getCookie } from "../../tools/cookie"
 import config from '../../config'
 import axios from "axios"
+import { GetField } from "../../tools/getform"
 
 const NoteHome = () => {
+  let { q } = useParams()
 
   let [getState, setState] = useState([]);
+  let [searchState, setSearchState] = useState(false);
+  let [qState, setQState] = useState(false);
 
   const getNotes = async () => {
     const json = JSON.stringify({});
@@ -22,24 +26,83 @@ const NoteHome = () => {
     }
   }
 
+  const searchNote = async (e) => {
+
+    let d = {};
+
+    if (e) {
+      e.preventDefault()
+      d = GetField(e)
+      window.history.pushState("", "", "/note/" + d.query)
+    }
+
+    if (!e && q) {
+      d.query = q
+      document.getElementById("s_field").setAttribute("value", q)
+    } else if (d.query === "") {
+      setSearchState(false)
+      getNotes()
+      return;
+    }
+
+    setSearchState(true)
+    setQState(d.query)
+    let loadCircle = document.getElementById("load_circle")
+    loadCircle.classList.remove("hide")
+    const json = JSON.stringify(d);
+    let t = getCookie("USER_TOKEN")
+    const res = await axios.post(config.backend + `note/all/search`, json, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Token': t
+      }
+    });
+    if (res.data.status) {
+      setState(res.data.data)
+    }
+    loadCircle.classList.add("hide")
+  }
+
   useEffect(() => {
-    getNotes();
+    if (q) {
+      searchNote();
+    } else {
+      getNotes();
+    }
   }, [])
 
   return (
     <>
+      <div className='load-circle hide' id='load_circle'>
+        <div></div>
+      </div>
       <div className='con'>
         <div className="space-3"></div>
-        <div className="input-group">
-          <input placeholder="Search..."></input>
-        </div>
+        <form onSubmit={searchNote}>
+          <div className="input-group">
+            <input placeholder="Search..." name="query" id="s_field"></input>
+          </div>
+        </form>
         <div className="space-3"></div>
 
         <div className="post-sess">
-          <Link to={"/note/new"} className="note-link new-post-link">
-            <i class="bi bi-plus-lg new-post-link-add"></i>
-            <p>Create New Note</p>
-          </Link>
+          {(() => {
+            if (!searchState) {
+              return (
+                <Link to={"/note/new"} className="note-link new-post-link">
+                  <i class="bi bi-plus-lg new-post-link-add"></i>
+                  <p>Create New Note</p>
+                </Link>
+              )
+            } else {
+              return (
+                <div className="note-link new-post-link-x">
+                  <p>Searching result for "{qState}".</p>
+                  <p>{getState.length} result found.</p>
+                </div>
+              )
+            }
+          })()}
           {(() => {
             let p = []
             getState.map((e) => {
