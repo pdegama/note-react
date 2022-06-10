@@ -36,6 +36,10 @@ const NoteHome = () => {
         <div className="space-3"></div>
 
         <div className="post-sess">
+          <Link to={"/note/new"} className="note-link new-post-link">
+            <i class="bi bi-plus-lg new-post-link-add"></i>
+            <p>Create New Note</p>
+          </Link>
           {(() => {
             let p = []
             getState.map((e) => {
@@ -47,37 +51,39 @@ const NoteHome = () => {
               var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
               var today = new Date(e.date);
 
-              p.push(<Link to={"/note/read/" + e._id} className="note-link">
-                <h2 className="note-link-title">
-                  {e.title + " "}
-                </h2>
-                <p className="text-small-l t-gray">
-                  {today.toLocaleDateString("en-US", options) + " "}
-                  {(() => {
-                    if (e.visible === false) {
-                      return (
-                        <i class="bi bi-eye color-gary"></i>
-                      )
-                    }
-                  })()}
-                </p>
-                <p>
-                  {strippedHtml}
-                </p>
-                <div className="tags-y">
-                  {(() => {
-                    let t = []
-                    e.tags.map((e) => {
-                      t.push(
-                        <div className="tags-x">
-                          {e}
-                        </div>
-                      )
-                    })
-                    return t;
-                  })()}
-                </div>
-              </Link>)
+              p.push(
+                <Link to={"/note/read/" + e._id} className="note-link">
+                  <h2 className="note-link-title">
+                    {e.title + " "}
+                  </h2>
+                  <p className="text-small-l t-gray">
+                    {today.toLocaleDateString("en-US", options) + " "}
+                    {(() => {
+                      if (e.visible === false) {
+                        return (
+                          <i class="bi bi-eye color-gary"></i>
+                        )
+                      }
+                    })()}
+                  </p>
+                  <p>
+                    {strippedHtml}
+                  </p>
+                  <div className="tags-y">
+                    {(() => {
+                      let t = []
+                      e.tags.map((e) => {
+                        t.push(
+                          <div className="tags-x">
+                            {e}
+                          </div>
+                        )
+                      })
+                      return t;
+                    })()}
+                  </div>
+                </Link>
+              )
             })
             return p;
           })()}
