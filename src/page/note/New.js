@@ -15,21 +15,6 @@ const New = () => {
     () => EditorState.createEmpty(),
   );
 
-  /* useEffect(() => {
-
-    setTimeout(() => {
-      const blocksFromHTML = htmlToDraft(``)
-
-      const content = ContentState.createFromBlockArray(
-        blocksFromHTML.contentBlocks,
-        blocksFromHTML.entityMap
-      );
-
-      setEditorState(() => EditorState.createWithContent(content))
-
-    }, 3000)
-  }, []) */
-
   const getHtml = () => {
     const rawContentState = convertToRaw(editorState.getCurrentContent());
     const markup = draftToHtml(rawContentState);
