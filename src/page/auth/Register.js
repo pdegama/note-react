@@ -95,7 +95,7 @@ function Register() {
         <div id="form_error" className="alert alert-red hide"></div>
         <div id="form_succe" className="alert alert-green hide">
           Register Secussful.<br />
-          Login To <Link to="/login">Click Hear</Link>.
+          Login To <Link to="/login">Click Here</Link>.
         </div>
         <form onSubmit={onRegister} className="auth-form">
           <div className="input-group my-15">
