@@ -1,5 +1,6 @@
 :root {
   --text-color: rgb(40, 40, 40);
+  --gary-color: rgba(40, 40, 40, 0.699);
   --input-size: 1.3rem;
   --input-lable-size: 1.1rem;
   --input-border: 1px solid #ced4da;
@@ -198,6 +199,10 @@ a {
   height: 20px;
 }
 
+.space-3{
+  height: 5px;
+}
+
 .note-title{
   font-size: 2.3rem;
   font-weight: bold;
@@ -263,13 +268,23 @@ a i{
 }
 
 .text-small{
-  text-align: right;
   font-size: 1.2rem;
 }
 
 .text-small-x{
-  text-align: right;
   font-size: .8rem;
+}
+
+.text-small-l{
+  font-size: 1rem;
+}
+
+.t-gray{
+  color: var(--gary-color);
+}
+
+.ujoasd{
+  text-align: right;
 }
 
 .d-c-flex{
@@ -307,6 +322,71 @@ a i{
   border-top: 5px solid rgb(63, 63, 63);
   border-radius: 30px;
   animation: rotate 1s infinite linear;
+}
+
+.w-auto{
+  width: auto;
+}
+
+.post-sess{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.post-sess > *{
+  width: 49%;
+  margin: 10px 0;
+  border: var(--input-border);
+  border-radius: 0.375rem;
+  outline: var(--input-outline);
+  padding: 10px 20px;
+  transition: .3s;
+}
+
+.post-sess > *:hover{
+  transform: translateY(-5px);
+}
+
+.post-sess > *:focus{
+  transition: .1s;
+  outline-width: 3px;
+  border: var(--input-border-foucs);
+}
+
+.navbar{
+  z-index: 9999;
+  top: 0;
+  position: sticky;
+}
+
+.note-link-title{
+  font-weight: 500;
+}
+
+.note-link > *{
+  margin: 5px 0;
+}
+
+.color-gary{
+  color: var(--gary-color);
+}
+
+.tags-y{
+  display: flex;
+}
+
+.tags-x{
+  border-radius: 4px;
+  font-size: .8rem;
+  padding: 3px 6px;
+  margin-right: 8px;
+  background: var(--gary-color);
+  color: #fff;
+}
+
+.sdffds{
+  margin-bottom: 5px;
 }
 
 @keyframes rotate {
@@ -364,6 +444,10 @@ a i{
 
   .d34jk{
     margin-right: 10px;
+  }
+
+  .post-sess > *{
+    width: 100%;
   }
 
 }
