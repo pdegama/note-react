@@ -48,7 +48,10 @@ const Read = () => {
             if (getState.found === true) {
               return (
                 <div className='d-flex'>
-                  <Link className='m-y-auto d34jk' to={"/note/edit/" + id}><i class="bi bi-file-earmark-pdf pdf-icon"></i></Link>
+                  <form action={config.backend + "pdf/" + id} target="_blank" method='POST' encType='application/x-www-form-urlencoded'>
+                    <input type="hidden" name="t" value={getCookie("USER_TOKEN")} />
+                    <button class="bi bi-file-earmark-pdf pdf-icon"></button>
+                  </form>
                   {(() => {
                     if (getState.edit) {
                       return (
@@ -75,7 +78,11 @@ const Read = () => {
           })()}
         </div>
         <p className="text-small-l sdffds">
-          {getState.date + " "}
+          {(() => {
+            if (getState.found) {
+              return getState.date + " "
+            }
+          })()}
           {(() => {
             if (getState.edit && !getState.visible) {
               return <i class="bi bi-eye color-gary"></i>
