@@ -3,6 +3,7 @@
 ## Require
 * [Deno](https://deno.land/)
 * [Node](https://nodejs.org/)
+* [MongoDB](https://www.mongodb.com/)
 * [npm](https://npmjs.org/)
 
 ## install
@@ -35,7 +36,7 @@ $ deno task run
 ```
 
 ## Author
-## [Parth](https://github.com/meparthka)
+### [Parth](https://github.com/meparthka)
 
 ## LICENCE
-## [MIT](https://github.com/meparthka/note-react/blob/main/LICENSE)
+### [MIT](https://github.com/meparthka/note-react/blob/main/LICENSE)
