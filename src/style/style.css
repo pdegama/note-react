@@ -262,9 +262,13 @@ a i {
 }
 
 .pdf-icon {
+  background-color: none;
+  border: none;
   color: var(--text-color);
   font-size: 1.8rem;
-  margin-right: 5px !important;
+  margin: 4px;
+  margin-right: 20px !important;
+  cursor: pointer;
 }
 
 .m-y-auto {
