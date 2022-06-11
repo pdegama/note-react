@@ -66,9 +66,11 @@ function Login() {
 
   return (
     <>
-      <h1 className="auth-title">
-        Note
-      </h1>
+      <Link to="/">
+        <h1 className="auth-title">
+          Note
+        </h1>
+      </Link>
 
       <div className="auth-con">
         <h2>
