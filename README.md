@@ -21,6 +21,7 @@ $ npm run init
 
 ## Init backend
 ```bash
+$ cd note-backend
 $ deno task init
 ```
 
@@ -32,6 +33,7 @@ $ npm run start
 
 ## Start backend
 ```bash
+$ cd note-backend
 $ deno task run
 ```
 
