@@ -64,6 +64,7 @@ const NoteHome = () => {
   }
 
   useEffect(() => {
+    document.getElementById("tab").innerHTML = ""
     if (q) {
       searchNote();
     } else {

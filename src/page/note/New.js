@@ -74,16 +74,20 @@ const New = () => {
 
   }
 
+  useEffect(() => {
+    document.getElementById("tab").innerHTML = "/new"
+  }, [])
+
   return (
     <>
       <div className='con'>
-        <h1 className='sub-title'>New</h1>
         <form onSubmit={newNote}>
+        <div className="space-3"></div>
           <div id="form_error" className="alert alert-red hide  "></div>
           <div id="form_succe" className="alert alert-green hide">
 
           </div>
-          <div className="input-group my-15">
+          <div className="input-group">
             <input type="text" id="title" placeholder="Title" name="title" />
           </div>
           <Editor

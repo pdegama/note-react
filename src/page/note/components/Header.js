@@ -6,7 +6,7 @@ const Header = () => {
     <>
       <div className="navbar">
         <a href="/note" className="nav-title">
-          Note
+          Note<snap id="tab"></snap>
         </a>
         <div>
           <Link to="/note/new"><i class="bi bi-plus-square"></i></Link>

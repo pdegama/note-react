@@ -26,6 +26,7 @@ const Read = () => {
       var datex = new Date(res.data.date);
       var date = datex.toLocaleDateString("en-US", options)
       setState({ title: res.data.title, tags: res.data.tags, visible: res.data.visible, date, found: true, html: res.data.html, edit: res.data.edit, fullname: res.data.fullname })
+      document.getElementById("tab").innerHTML = "/read /" + res.data.title
     } else {
       setState({
         title: "Post Not Found!", found: false, html: `
@@ -36,6 +37,7 @@ const Read = () => {
   }
 
   useEffect(() => {
+    document.getElementById("tab").innerHTML = "/read"
     getRead()
   }, [])
 

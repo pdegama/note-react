@@ -50,7 +50,7 @@ const Edit = () => {
         }
         tagsEle.setAttribute("value", tags)
 
-        console.log(visibleEle.childNodes);
+        document.getElementById("tab").innerHTML = "/edit /" + res.data.title
 
         if (!res.data.visible) {
           visibleEle.childNodes[1].setAttribute("selected", "")
@@ -68,6 +68,7 @@ const Edit = () => {
   }
 
   useEffect(() => {
+    document.getElementById("tab").innerHTML = "/edit"
     getData()
   }, [])
 

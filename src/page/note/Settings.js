@@ -4,6 +4,7 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import axios from 'axios';
 import { getCookie } from "../../tools/cookie"
 import config from '../../config'
+import Alert from "../Alert"
 
 const Settings = () => {
 
@@ -28,8 +29,12 @@ const Settings = () => {
   }
 
   useEffect(() => {
+    document.getElementById("tab").innerHTML = "/settings"
     getData()
   }, [])
+
+  let [nameAlertState, setNameAlertState] = useState(false);
+  let [passAlertState, setPassAlertState] = useState(false);
 
   const updateName = async (e) => {
     e.preventDefault()
@@ -37,10 +42,10 @@ const Settings = () => {
     let error = ``
     let d = GetField(e)
     let formErr = document.getElementById("name_error")
-    let formSuc = document.getElementById("name_succe")
     let formBtn = document.getElementById("name_submin_button")
     formErr.classList.add("hide")
-    formSuc.classList.add("hide")
+    setNameAlertState(false)
+    setPassAlertState(false)
     formBtn.setAttribute("disabled", "")
 
     if (d.fullname.length >= 1) {
@@ -72,7 +77,11 @@ const Settings = () => {
         window.location = "/"
       }
 
-      formSuc.classList.remove("hide")
+      setNameAlertState(true)
+      setTimeout(() => {
+        setNameAlertState(false)
+      }, 7000)
+
       formBtn.removeAttribute("disabled")
     }, 1000)
 
@@ -84,10 +93,10 @@ const Settings = () => {
     let error = ``
     let d = GetField(e)
     let formErr = document.getElementById("pass_error")
-    let formSuc = document.getElementById("pass_succe")
     let formBtn = document.getElementById("pass_submin_button")
     formErr.classList.add("hide")
-    formSuc.classList.add("hide")
+    setNameAlertState(false)
+    setPassAlertState(false)
     formBtn.setAttribute("disabled", "")
 
     if (d.curpass.length >= 1) {
@@ -133,11 +142,14 @@ const Settings = () => {
         window.location = "/"
       } else if (res.data.status) {
         e.target.reset()
-        formSuc.classList.remove("hide")
+        setPassAlertState(true)
+        setTimeout(() => {
+          setPassAlertState(false)
+        }, 7000)
       }
 
       formBtn.removeAttribute("disabled")
-    
+
     }, 1000)
 
   }
@@ -147,12 +159,13 @@ const Settings = () => {
       <div className='load-circle' id='load_circle'>
         <div></div>
       </div>
+      <Alert show={nameAlertState} event={() => setNameAlertState(false)} massage={"Name Change Successful"} color={"green"} />
+      <Alert show={passAlertState} event={() => setPassAlertState(false)} massage={"Password change successful"} color={"green"} />
       <div className='con'>
-        <h1 className='sub-title'>Settings</h1>
-        <h1 className='sub-sub-title'>Name Settings</h1>
+        <div className="space-2"></div>
+        <h1 className='sub-sub-title'>Change Name</h1>
         <form onSubmit={updateName}>
           <div id="name_error" className="alert alert-red hide"></div>
-          <div id="name_succe" className="alert alert-green hide">Name Change Successful</div>
 
           <div className="input-group my-15">
             <label>Name:</label>
@@ -168,11 +181,12 @@ const Settings = () => {
             Save
           </button>
         </form>
-        <div className="space-1"></div>
-        <h1 className='sub-sub-title'>Password Settings</h1>
+        <div className="space-2"></div>
+        <hr />
+        <div className="space-3"></div>
+        <h1 className='sub-sub-title'>Password Manage</h1>
         <form onSubmit={updatePass}>
           <div id="pass_error" className="alert alert-red hide"></div>
-          <div id="pass_succe" className="alert alert-green hide">Password change successful.</div>
 
           <div className="input-group my-15">
             <label>Current Password:</label>
