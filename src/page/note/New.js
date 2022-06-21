@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { EditorState, ContentState, convertToRaw } from 'draft-js';
-import htmlToDraft from 'html-to-draftjs';
+import { EditorState, convertToRaw } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 import { Editor } from 'react-draft-wysiwyg';
 import { GetField } from "../../tools/getform"
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import axios from 'axios';
-import { getCookie, deleteCookie } from "../../tools/cookie"
+import { getCookie } from "../../tools/cookie"
 import config from '../../config'
+import { useSelector, useDispatch } from 'react-redux'
+import { setNewNote } from '../../reducers/newnote'
+import { useNavigate } from 'react-router-dom';
 
 const New = () => {
+  let navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const [editorState, setEditorState] = useState(
     () => EditorState.createEmpty(),
@@ -63,17 +67,18 @@ const New = () => {
       });
 
       if (res.data.status) {
-        window.location = "/note/read/" + res.data.id
+        dispatch(setNewNote())
+        navigate("/note/read/" + res.data.id)
       } else if (!res.data.status) {
         formErr.innerHTML = "Server Error.";
         formBtn.removeAttribute("disabled")
         formErr.classList.remove("hide")
       };
-
+      
     }, 1000)
-
+    
   }
-
+  
   useEffect(() => {
     document.getElementById("tab").innerHTML = "/new"
   }, [])
@@ -82,7 +87,7 @@ const New = () => {
     <>
       <div className='con'>
         <form onSubmit={newNote}>
-        <div className="space-3"></div>
+          <div className="space-3"></div>
           <div id="form_error" className="alert alert-red hide  "></div>
           <div id="form_succe" className="alert alert-green hide">
 

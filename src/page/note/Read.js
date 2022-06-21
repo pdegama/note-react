@@ -4,8 +4,20 @@ import axios from 'axios';
 import { getCookie } from "../../tools/cookie"
 import config from '../../config'
 import { useParams, Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'
+import { clearNewNote } from '../../reducers/newnote'
+import { clearEditNote } from '../../reducers/editnote'
+import Alert from "../Alert"
 
 const Read = () => {
+
+  const newNoteSele = useSelector(state => state.newnote.value)
+  const editNoteSele = useSelector(state => state.editnote.value)
+  console.log(editNoteSele);
+  const dispatch = useDispatch()
+
+  let [newNoteState, setNewNoteState] = useState(false)
+  let [editNoteState, setEditNoteState] = useState(false)
 
   let { id } = useParams()
   let [getState, setState] = useState({})
@@ -37,12 +49,28 @@ const Read = () => {
   }
 
   useEffect(() => {
+    setTimeout(() => {
+      setNewNoteState(newNoteSele);
+    }, 1);
+    setTimeout(() => {
+      setNewNoteState(false);
+    }, 7001)
+    setTimeout(() => {
+      setEditNoteState(editNoteSele);
+    }, 1);
+    setTimeout(() => {
+      setEditNoteState(false);
+    }, 7001)
+    dispatch(clearNewNote())
+    dispatch(clearEditNote())
     document.getElementById("tab").innerHTML = "/read"
     getRead()
   }, [])
 
   return (
     <>
+      <Alert show={newNoteState} event={() => setNewNoteState(false)} massage={"Note Create Successful"} color={"green"} />
+      <Alert show={editNoteState} event={() => setEditNoteState(false)} massage={"Edit Note Successful"} color={"green"} />
       <div className='con'>
         <div className='d-flex note-hade'>
           <p className='note-title'>{getState.title}</p>

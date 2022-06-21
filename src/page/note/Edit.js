@@ -9,8 +9,14 @@ import axios from 'axios';
 import { getCookie, deleteCookie } from "../../tools/cookie"
 import config from '../../config'
 import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'
+import { setEditNote } from '../../reducers/editnote'
+import { useNavigate } from 'react-router-dom';
 
 const Edit = () => {
+
+  let navigate = useNavigate()
+  const dispatch = useDispatch()
 
   let { id } = useParams()
   const [editorState, setEditorState] = useState(
@@ -118,7 +124,8 @@ const Edit = () => {
       });
 
       if (res.data.status) {
-        window.location = "/note/read/" + id
+        dispatch(setEditNote())
+        navigate("/note/read/" + id)
       } else if (!res.data.status) {
         formErr.innerHTML = "Server Error.";
         formBtn.removeAttribute("disabled")
