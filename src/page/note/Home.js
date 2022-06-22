@@ -4,6 +4,10 @@ import { getCookie } from "../../tools/cookie"
 import config from '../../config'
 import axios from "axios"
 import { GetField } from "../../tools/getform"
+import Alert from "../Alert"
+import { useSelector, useDispatch } from 'react-redux'
+import { clearLogInState } from '../../reducers/loginstate'
+import { clearRegisterState } from '../../reducers/registerstate'
 
 const NoteHome = () => {
   let { q } = useParams()
@@ -11,6 +15,13 @@ const NoteHome = () => {
   let [getState, setState] = useState([]);
   let [searchState, setSearchState] = useState(false);
   let [qState, setQState] = useState(false);
+
+  const loginStateSele = useSelector(state => state.loginstate.value)
+  const registerStateSele = useSelector(state => state.registerstate.value)
+  const dispatch = useDispatch()
+
+  let [loginState, setLoginState] = useState(false)
+  let [registerState, setRegisterState] = useState(false)
 
   const getNotes = async () => {
     const json = JSON.stringify({});
@@ -64,6 +75,16 @@ const NoteHome = () => {
   }
 
   useEffect(() => {
+    setTimeout(() => {
+      setLoginState(loginStateSele)
+      setRegisterState(registerStateSele)
+    }, 1);
+    dispatch(clearLogInState())
+    dispatch(clearRegisterState())
+    setTimeout(() => {
+      setLoginState(false)
+      setRegisterState(false)
+    }, 7001)
     document.getElementById("tab").innerHTML = ""
     if (q) {
       searchNote();
@@ -74,6 +95,8 @@ const NoteHome = () => {
 
   return (
     <>
+      <Alert show={loginState} event={() => setLoginState(false)} massage={"Login Successful"} color={"green"} />
+      <Alert show={registerState} event={() => setRegisterState(false)} massage={"Register Successful"} color={"green"} />
       <div className='load-circle hide' id='load_circle'>
         <div></div>
       </div>

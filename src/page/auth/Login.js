@@ -3,8 +3,14 @@ import axios from "axios";
 import config from "../../config"
 import { GetField } from "../../tools/getform"
 import { setCookie } from "../../tools/cookie"
+import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'
+import { setLogInState } from '../../reducers/loginstate'
 
 function Login() {
+
+  let navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const onLogin = async (e) => {
     e.preventDefault()
@@ -52,7 +58,8 @@ function Login() {
       if (res.data.status) {
         formBtn.removeAttribute("disabled")
         setCookie("USER_TOKEN", res.data.token)
-        window.location = "/note"
+        dispatch(setLogInState())
+        navigate("/note")
         e.target.reset()
       } else if (!res.data.status) {
         formErr.innerHTML = "Username or Password is invalid.";

@@ -2,8 +2,15 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import config from "../../config"
 import { GetField } from "../../tools/getform"
+import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'
+import { setRegisterState } from '../../reducers/registerstate'
+import { setCookie } from "../../tools/cookie";
 
 function Register() {
+
+  let navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const onRegister = async (e) => {
     e.preventDefault()
@@ -69,8 +76,16 @@ function Register() {
       });
 
       if (res.data.status) {
+        const json = JSON.stringify({username: d.username, password: d.password});
+        const res = await axios.post(config.backend + 'auth/login', json, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+        setCookie("USER_TOKEN", res.data.token)
+        dispatch(setRegisterState())
+        navigate("/note")
         formBtn.removeAttribute("disabled")
-        formSuc.classList.remove("hide")
         e.target.reset()
       } else if (res.data.exist) {
         formErr.innerHTML = "Username is already exist please change username";

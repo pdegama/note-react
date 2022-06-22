@@ -13,7 +13,7 @@ const Read = () => {
 
   const newNoteSele = useSelector(state => state.newnote.value)
   const editNoteSele = useSelector(state => state.editnote.value)
-  console.log(editNoteSele);
+
   const dispatch = useDispatch()
 
   let [newNoteState, setNewNoteState] = useState(false)
