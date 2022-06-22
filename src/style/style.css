@@ -255,9 +255,17 @@ a i {
   color: #fff;
 }
 
-.navbar a i {
+.navbar button{
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.navbar * i {
   margin-left: 20px;
   font-size: 1.5rem;
+  color: #fff;
 }
 
 .note-hade {
@@ -697,7 +705,7 @@ a i {
     margin-top: 10px;
   }
 
-  .navbar a i {
+  .navbar * i {
     font-size: 1.2rem;
   }
 

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import Alert from "./Alert"
 import { useSelector, useDispatch } from 'react-redux'
 import { clearLogOutState } from '../reducers/logoutstate'
+import { getCookie, setCookie } from "../tools/cookie"
 
 const Home = (e) => {
 
@@ -13,14 +14,41 @@ const Home = (e) => {
 
   useEffect(() => {
     setTimeout(() => {
-      setLogOutState(logOutSele)    
-      setLogOutState2(logOutSele)    
+      setLogOutState(logOutSele)
+      setLogOutState2(logOutSele)
     }, 1)
     dispatch(clearLogOutState())
     setTimeout(() => {
-      setLogOutState(false)    
+      setLogOutState(false)
     }, 7001)
+
+    let themeBtn = document.getElementById("theme_btn")
+    let theme = getCookie("USER_THEME")
+    if (theme === "dark") {
+      document.body.classList.add("dark")
+      themeBtn.innerHTML = `<i class="bi bi-sun"></i>`
+    } else {
+      document.body.classList.remove("dark")
+      themeBtn.innerHTML = `<i class="bi bi-moon"></i>`
+    }
+
   }, [])
+
+  const changeTheme = (e) => {
+    let themeBtn = document.getElementById("theme_btn")
+    let body = document.body
+    console.log(body);
+    let theme = getCookie("USER_THEME")
+    if (theme === "dark") {
+      themeBtn.innerHTML = `<i class="bi bi-moon"></i>`
+      body.classList.remove("dark")
+      setCookie("USER_THEME", "light")
+    } else {
+      themeBtn.innerHTML = `<i class="bi bi-sun"></i>`
+      body.classList.add("dark")
+      setCookie("USER_THEME", "dark")
+    }
+  }
 
   return (
     <>
@@ -49,6 +77,7 @@ const Home = (e) => {
               )
             }
           })()}
+          <button onClick={changeTheme} id="theme_btn"><i class="bi bi-moon"></i></button>
         </div>
       </div>
 

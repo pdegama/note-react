@@ -44,6 +44,12 @@ function App() {
 
   useEffect(() => {
     authTry()
+    let theme = getCookie("USER_THEME")
+    if (theme === "dark") {
+      document.body.classList.add("dark")
+    } else {
+      document.body.classList.remove("dark")
+    }
   }, [])
 
 
