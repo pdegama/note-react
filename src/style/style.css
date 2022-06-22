@@ -468,45 +468,60 @@ a i {
   text-align: center;
 }
 
-.hello{
+.hello {
   font-weight: 400;
   font-size: 2.7rem !important;
 }
 
-.hello-button{
+.hello-button {
   font-size: 1.5rem !important;
 }
 
-.pop-alert{
-  top: 100%;
+.pop-alert {
   position: fixed;
-  transform: translateY(0%);
   z-index: 999999999;
   transition: .3s;
+  max-width: 400px;
 }
 
-.pop-mass{
+.pop-alert-bottom {
+  transform: translateY(0%);
+  top: 100%;
+}
+
+.pop-alert-top {
+  transform: translateX(100%);
+  top: 0%;
+  right: 0%;
+}
+
+.pop-mass {
+  display: flex;
   margin: 20px;
   color: #fff;
   padding: 5px 10px;
-  border-radius: 5px;   
+  border-radius: 5px;
   font-size: 20px;
   font-weight: 300;
 }
 
-.pop-red{
-  background: red;
+.pop-red {
+  background: rgb(252, 70, 70);
 }
 
-.pop-green{
+.pop-green {
   background: rgb(12, 146, 68);
 }
 
-.pop-alert-show{
+.pop-alert-bottom.pop-alert-show {
   transform: translateY(-100%);
 }
 
-.pop-btn{
+.pop-alert-top.pop-alert-show {
+  transform: translateX(0%);
+}
+
+.pop-btn {
   background: #0000;
   outline: none;
   border: none;
@@ -515,11 +530,11 @@ a i {
   margin-left: 10px;
 }
 
-.pop-btn *{
-  color: #fff;  
+.pop-alert * {
+  color: #fff;
 }
 
-#tab{
+#tab {
   margin-left: 5px;
   font-size: 1.2rem;
   color: rgba(255, 255, 255, 0.671);
@@ -591,24 +606,28 @@ a i {
     width: 100%;
   }
 
-  .hello{
+  .hello {
     width: 100%;
     font-weight: 400;
     font-size: 2rem !important;
   }
-  
-  .hello-button{
+
+  .hello-button {
     font-size: 1.2rem !important;
   }
 
- .pop-mass{
+  .pop-alert {
+    max-width: 350px;
+  }
+
+  .pop-mass {
     font-size: 18px;
   }
 
 }
 
 @media screen and (max-width: 300px) {
-  .pop-mass{
+  .pop-mass {
     font-size: 15px;
   }
 }

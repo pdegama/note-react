@@ -6,11 +6,16 @@ import { setCookie } from "../../tools/cookie"
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import { setLogInState } from '../../reducers/loginstate'
+import Alert from "../Alert";
+import { useState } from "react";
 
 function Login() {
 
   let navigate = useNavigate()
   const dispatch = useDispatch()
+
+  let [loginError, setLoginError] = useState(false);
+  let [loginMass, setLoginMass] = useState("");
 
   const onLogin = async (e) => {
     e.preventDefault()
@@ -20,7 +25,7 @@ function Login() {
     let error = ``
     let formErr = document.getElementById("form_error")
     let formBtn = document.getElementById("form_submin_button")
-    formErr.classList.add("hide")
+    setLoginError(false);
     formBtn.setAttribute("disabled", "")
 
     if (d.username.length >= 1) {
@@ -35,15 +40,18 @@ function Login() {
       v.push(1)
     } else {
       error += `
-      Plese enter password.<br />
+      Please enter password.<br />
       `
     }
 
     setTimeout(async () => {
       if (v.length !== 2) {
-        formErr.innerHTML = error;
+        setLoginMass(error)
         formBtn.removeAttribute("disabled")
-        formErr.classList.remove("hide")
+        setLoginError(true)
+        setTimeout(() => {
+          setLoginError(false)
+        }, 15000);
         return
       }
 
@@ -62,9 +70,12 @@ function Login() {
         navigate("/note")
         e.target.reset()
       } else if (!res.data.status) {
-        formErr.innerHTML = "Username or Password is invalid.";
+        setLoginMass("Username or Password is invalid.")
         formBtn.removeAttribute("disabled")
-        formErr.classList.remove("hide")
+        setLoginError(true)
+        setTimeout(() => {
+          setLoginError(false)
+        }, 15000);
       };
 
     }, 1000)
@@ -78,7 +89,7 @@ function Login() {
           Note
         </h1>
       </Link>
-
+      <Alert show={loginError} event={() => setLoginError(false)} massage={loginMass} color={"red"} top={true} />
       <div className="auth-con">
         <h2>
           Login
