@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import config from "../../config"
@@ -6,11 +7,15 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import { setRegisterState } from '../../reducers/registerstate'
 import { setCookie } from "../../tools/cookie";
+import Alert from "../Alert";
 
 function Register() {
 
   let navigate = useNavigate()
   const dispatch = useDispatch()
+
+  let [registerError, setRegisterError] = useState(false);
+  let [registerMass, setRegisterMass] = useState("");
 
   const onRegister = async (e) => {
     e.preventDefault()
@@ -59,9 +64,12 @@ function Register() {
 
     setTimeout(async () => {
       if (v.length !== 3) {
-        formErr.innerHTML = error;
+        setRegisterMass(error);
         formBtn.removeAttribute("disabled")
-        formErr.classList.remove("hide")
+        setRegisterError(true)
+        setTimeout(() => {
+          setRegisterError(false)
+        }, 15000);
         return
       }
 
@@ -76,7 +84,7 @@ function Register() {
       });
 
       if (res.data.status) {
-        const json = JSON.stringify({username: d.username, password: d.password});
+        const json = JSON.stringify({ username: d.username, password: d.password });
         const res = await axios.post(config.backend + 'auth/login', json, {
           headers: {
             'Content-Type': 'application/json'
@@ -88,9 +96,12 @@ function Register() {
         formBtn.removeAttribute("disabled")
         e.target.reset()
       } else if (res.data.exist) {
-        formErr.innerHTML = "Username is already exist please change username";
+        setRegisterMass("Username is already exist please change username")
         formBtn.removeAttribute("disabled")
-        formErr.classList.remove("hide")
+        setRegisterError(true)
+        setTimeout(() => {
+          setRegisterError(false)
+        }, 15000);
       };
 
     }, 1000)
@@ -99,6 +110,7 @@ function Register() {
 
   return (
     <>
+      <Alert show={registerError} event={() => setRegisterError(false)} massage={registerMass} color={"red"} top={true} />
       <Link to="/">
         <h1 className="auth-title">
           Note
